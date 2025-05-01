@@ -1,0 +1,70 @@
+body {
+	background-color: #f8f9fa; /* Un fondo gris claro general */
+	/* Si quieres centrar el contenido verticalmente en toda la página, puedes añadir: */
+	/* display: flex; */
+	/* justify-content: center; */
+	/* align-items: center; */
+	/* min-height: 100vh; */
+	/* margin: 0; */
+}
+
+.professional-login-form {
+	padding: 30px; /* Espacio interno */
+	border-radius: 8px; /* Bordes redondeados */
+	background-color: #ffffff; /* Fondo blanco para el formulario */
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.professional-login-form h3 {
+	color: #343a40; /* Un color oscuro para el título */
+	font-weight: 600;
+}
+
+.professional-login-form .form-label {
+	font-weight: 500;
+	color: #495057;
+}
+
+.professional-login-form .form-control {
+	padding: 10px 15px; /* Ajustar padding */
+	border-radius: 5px;
+}
+
+ .professional-login-form .form-control:focus {
+	 border-color: #007bff;
+	 box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+ }
+
+.professional-login-form .btn-primary {
+	/* Bootstrap ya le da buen estilo, puedes ajustar color si quieres */
+	/* background-color: #007bff; */
+	/* border-color: #007bff; */
+}
+
+ .professional-login-form .social-login .btn {
+	 /* Estilos para los botones de redes sociales */
+	 border-color: #ced4da; /* Borde gris claro */
+	 color: #495057; /* Texto gris oscuro */
+ }
+
+ .professional-login-form .social-login .btn:hover {
+	  background-color: #e9ecef; /* Fondo gris claro al pasar el mouse */
+	  border-color: #ced4da;
+	  color: #495057;
+ }
+
+/* Estilos para los iconos de Font Awesome */
+.professional-login-form .social-login i {
+	/* Los colores específicos por marca (Google/Facebook) se pueden añadir aquí si quieres */
+	/* Ejemplo: */
+	/* &.fa-google { color: #db4437; } */
+	/* &.fa-facebook-f { color: #4267B2; } */
+}
+
+.professional-login-form a {
+	color: #007bff; /* Asegura que los enlaces tengan un color coherente */
+}
+
+.professional-login-form a:hover {
+	text-decoration: underline;
+}
