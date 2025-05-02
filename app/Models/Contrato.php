@@ -17,9 +17,11 @@ class Contrato extends Model
         'updated_at'
     ];
     protected $casts = [
+        'fecha_inicio' => 'date',
         'fecha_fin_original' => 'date',    // o 'datetime'
         'fecha_fin_gracia'   => 'date',
     ];
+
     /**
      * La tabla asociada con el modelo.
      * (Laravel intentaría 'contratos' por defecto, pero es bueno ser explícito)

@@ -30,7 +30,10 @@
                                 $dashboardRoute = route('admin.dashboard');
                             } elseif (Auth::user()->rol_id == 4) {
                                 $dashboardRoute = route('consulta.dashboard');
+                            } elseif (Auth::user()->rol_id == 2) {
+                                $dashboardRoute = route('auditor.dashboard');
                             }
+                           
                         @endphp
                         {{-- Comprueba si la ruta actual es el dashboard correspondiente para marcar como activo --}}
                         <a class="nav-link {{ request()->url() == $dashboardRoute ? 'active' : '' }}" href="{{ $dashboardRoute }}">Mi Portal</a>

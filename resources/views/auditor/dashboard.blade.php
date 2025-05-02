@@ -30,14 +30,13 @@
     {{-- Cards de Acciones Principales --}}
     <div class="row g-4">
 
-        {{-- Card: Consultar Datos (Placeholder General) --}}
         <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><i class="fas fa-database me-2 text-info"></i>Consultar Datos</h5>
-                    <p class="card-text text-muted">Acceder en modo lectura a los registros operativos (Nichos, Contratos, Pagos, etc.) y catálogos del sistema.</p>
-                    {{-- Este enlace podría llevar a una vista general o a secciones específicas (a definir) --}}
-                    <a href="#" class="btn btn-info mt-auto disabled">Explorar Datos</a>
+                    <p class="card-text text-muted">Acceder en modo lectura a los registros operativos y catálogos del sistema.</p>
+                    {{-- ***** CAMBIO AQUÍ: Enlazar al dashboard de consulta ***** --}}
+                    <a href="{{ route('auditor.consultar.dashboard') }}" class="btn btn-info mt-auto">Iniciar Consulta</a>
                 </div>
             </div>
         </div>
@@ -47,9 +46,9 @@
             <div class="card h-100 shadow-sm">
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><i class="fas fa-clipboard-list me-2 text-success"></i>Reportes de Auditoría</h5>
-                    <p class="card-text text-muted">Generar y exportar reportes específicos para validación (Conciliación, Vencidos sin acción, Pagos antiguos, etc.).</p>
-                    {{-- Este enlace llevaría a una página específica de reportes de auditoría --}}
-                    <a href="#" class="btn btn-success mt-auto disabled">Ver Reportes</a>
+                    <p class="card-text text-muted">Generar y exportar reportes específicos para validación...</p>
+                    {{-- ***** CAMBIO AQUÍ ***** --}}
+                    <a href="{{ route('auditor.reportes.index') }}" class="btn btn-success mt-auto">Ver Reportes</a>
                 </div>
             </div>
         </div>

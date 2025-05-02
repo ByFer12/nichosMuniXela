@@ -70,5 +70,7 @@ class Kernel extends HttpKernel
         // ... otros middleware
         'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class, // <-- Añade esta línea
         'auditor' => \App\Http\Middleware\EnsureUserIsAuditor::class, // <-- Añadir línea
+        'ayudante' => \App\Http\Middleware\EnsureUserIsAyudante::class, // <-- Añadir
+        'admin_or_ayudante' => \App\Http\Middleware\AllowAdminOrAyudante::class, // <-- ¡Añadido!
     ];
 }

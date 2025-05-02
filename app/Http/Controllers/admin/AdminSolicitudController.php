@@ -148,7 +148,7 @@ class AdminSolicitudController extends Controller
             ]);
 
              // TODO: Opcional - Notificar al usuario consulta
-
+            
              return redirect()->route('admin.solicitudes.index')->with('success', "Solicitud #{$solicitud->id} rechazada.");
 
         } catch (\Exception $e) {

@@ -112,56 +112,53 @@ class DashboardController extends Controller
     public function requestBoletaFromModal(Request $request)
     {
         $user = Auth::user();
-
+    
         $validated = $request->validate([
             'contrato_id_modal' => 'required|integer|exists:contratos,id',
             'observaciones_usuario_modal' => 'nullable|string|max:500',
         ]);
-
+    
         $contratoId = $validated['contrato_id_modal'];
         /** @var Contrato|null $contrato */ // Type hint para autocompletado
         $contrato = Contrato::find($contratoId);
-
-  
+    
+    
         if (!$contrato || $user->rol_id !== 4 || $contrato->responsable_id !== $user->responsable_id) {
-            
+    
             return redirect()->route('consulta.dashboard')
                      ->with('error', 'No tienes permiso o el contrato no existe.');
         }
-
-        
-        if ($contrato->activo) {
-             return redirect()->route('consulta.dashboard')
-                     ->with('error', 'No puedes solicitar la boleta de renovación aún. El contrato está vigente hasta el' . $fechaFinOriginal->format('d/m/Y') . ". Podrás solicitarla a partir del " . $fechaInicioSolicitud->format('d/m/Y') . ".");
-        }
-
+    
         // --- Validación 3: Lógica de Tiempo para Solicitud (Renovación) ---
         $hoy = Carbon::today();
-        $fechaFinOriginal = Carbon::parse($contrato->fecha_fin_original);
-        $fechaFinGracia = Carbon::parse($contrato->fecha_fin_gracia);
-        // Período permitido: Desde X meses antes del fin original hasta el fin del período de gracia
-        $mesesAntesParaSolicitar = 3; // Puedes ajustar este valor
-        $fechaInicioSolicitud = $fechaFinOriginal->copy()->subMonths($mesesAntesParaSolicitar);
-
-        // Comprobamos si HOY está DESPUÉS de la fecha de fin de gracia (ya expiró totalmente)
-        if ($hoy->gt($fechaFinGracia)) { // gt() significa "greater than" (mayor que)
+        $fechaFinOriginal = Carbon::parse($contrato->fecha_fin_original); // Definir aquí
+        $fechaFinGracia = Carbon::parse($contrato->fecha_fin_gracia);     // Definir aquí
+        $mesesAntesParaSolicitar = 3;
+        $fechaInicioSolicitud = $fechaFinOriginal->copy()->subMonths($mesesAntesParaSolicitar); // Definir aquí
+    
+    
+        if ($contrato->activo) {
+             return redirect()->route('consulta.dashboard')
+                     ->with('error', 'No puedes solicitar la boleta de renovación aún. El contrato está vigente hasta el ' . $fechaFinOriginal->format('d/m/Y') . ". Podrás solicitarla a partir del " . $fechaInicioSolicitud->format('d/m/Y') . ".");
+        }
+    
+        // Comprobamos si HOY está DESPUÉS de la fecha de fin de gracia
+        if ($hoy->gt($fechaFinGracia)) {
              return redirect()->route('consulta.dashboard')
                       ->with('error', "El período para solicitar la boleta de este contrato (incluyendo gracia) finalizó el " . $fechaFinGracia->format('d/m/Y') . ". Contacta a la administración.");
         }
-        // Si llegamos aquí, estamos dentro del período permitido (desde $fechaInicioSolicitud hasta $fechaFinGracia)
-        // --- Fin Validación 3 ---
-
-
+        // Si llegamos aquí, estamos dentro del período permitido
+    
         // --- Validación 4: Solicitud Pendiente Existente ---
         $existeSolicitudPendiente = Solicitud::where('contrato_id', $contratoId)
                                             ->where('tipo_solicitud', 'boleta')
-                                            ->whereIn('estado', ['pendiente', 'en_proceso']) // Considerar también 'en_proceso'
+                                            ->whereIn('estado', ['pendiente', 'en_proceso'])
                                             ->exists();
         if ($existeSolicitudPendiente) {
             return redirect()->route('consulta.dashboard')
                      ->with('warning', 'Ya existe una solicitud de boleta pendiente o en proceso para este contrato.');
         }
-
+    
         // --- Crear la solicitud ---
         try {
             Solicitud::create([
@@ -172,15 +169,14 @@ class DashboardController extends Controller
                 'estado' => 'pendiente',
                 'observaciones_usuario' => $validated['observaciones_usuario_modal'],
             ]);
-
-            // Redirigir (puedes elegir el dashboard o la lista de contratos)
+    
             return redirect()->route('consulta.dashboard')
                      ->with('success', "Solicitud de boleta (Renovación/Pago Contrato #{$contratoId}) enviada correctamente.");
-
+    
         } catch (\Exception $e) {
             Log::error("Error al crear solicitud de boleta desde modal: " . $e->getMessage(), [
                 'usuario_id' => $user->id,
-                'contrato_id' => $contratoId, // Usar la variable que tienes
+                'contrato_id' => $contratoId,
             ]);
             return redirect()->route('consulta.dashboard')
                      ->with('error', 'Ocurrió un error inesperado al procesar tu solicitud.');
