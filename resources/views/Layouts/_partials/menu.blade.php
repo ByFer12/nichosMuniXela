@@ -3,7 +3,7 @@
     <div class="container">
         {{-- Brand --}}
         <a class="navbar-brand" href="{{ route('home') }}"> {{-- La marca siempre puede apuntar a home --}}
-            Muni Cementerios
+            <i class="fas fa-building-columns fa-2x me-3 text-secondary"></i> Municipalidad de Quetzaltenango
         </a>
 
         {{-- Toggler --}}
@@ -51,9 +51,6 @@
                     <li class="nav-item">
                         {{-- Enlace Home estándar para visitantes --}}
                         <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" aria-current="page" href="{{route('home')}}">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}" href="{{route('register')}}">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}" href="{{route('login')}}">Login</a> {{-- Añadido enlace Login --}}

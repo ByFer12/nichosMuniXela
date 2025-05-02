@@ -59,17 +59,17 @@ return [
     |
     */
 
-    'providers' => [
-        'users' => [
-            'driver' => 'database', // <--- Cambia de 'eloquent' a 'database'
-            'table' => 'usuarios',  // <--- Añade esta línea con el nombre de tu tabla
-        ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+'providers' => [
+    'users' => [
+        'driver' => 'eloquent', // <-- Debe ser 'eloquent'
+        'model' => App\Models\User::class, // <-- ¡ESTA LÍNEA ES CRUCIAL! Debe apuntar a tu modelo User.
     ],
+
+    // 'users' => [
+    //     'driver' => 'database', // <-- ESTO ESTARÍA MAL si quieres Eloquent
+    //     'table' => 'usuarios',
+    // ],
+],
 
     /*
     |--------------------------------------------------------------------------

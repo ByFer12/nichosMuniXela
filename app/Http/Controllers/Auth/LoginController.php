@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -55,8 +56,19 @@ class LoginController extends Controller
                     case 1: // Administrador
                         echo "admin";
                         return redirect()->intended(route('admin.dashboard'));
+
+                    case 2: // Usuario
+                        echo "usuario";
+                        return redirect()->intended(route('ayudante.dashboard'));
+
+                    case 3: // Auditor
+                        echo "auditor";
+                        return redirect()->intended(route('auditor.dashboard'));
+                        
                     case 4: // Consulta
                         return redirect()->intended(route('consulta.dashboard'));
+
+                    
                     default:
                         Auth::logout();
                         return redirect('/login')->with('error', 'Rol de usuario no autorizado para acceder.');
