@@ -68,7 +68,44 @@ Route::put('/mi-perfil', [DashboardController::class, 'updateProfile'])
           Route::middleware('admin')->group(function() {
               // Dashboard Admin (Solo Admin)
               Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+              Route::get('/nichos', [AdminNichoController::class, 'index'])
+              ->name('nichos.index'); // admin.nichos.index
+    
+              Route::get('/nichos/crear', [AdminNichoController::class, 'create'])
+              ->name('nichos.create'); // admin.nichos.create
+    
+              Route::post('/nichos', [AdminNichoController::class, 'store'])
+              ->name('nichos.store'); // admin.nichos.store
+    
+              Route::get('/nichos/{nicho}/editar', [AdminNichoController::class, 'edit'])
+              ->name('nichos.edit'); // admin.nichos.edit
+              Route::put('/nichos/{nicho}', [AdminNichoController::class, 'update'])
+              ->name('nichos.update'); // admin.nichos.update
+              Route::get('/contratos', [AdminContratoController::class, 'index'])
+                        ->name('contratos.index'); // admin.contratos.index
+
+                        Route::get('/contratos/crear', [AdminContratoController::class, 'create'])
+                        ->name('contratos.create'); // admin.contratos.create
+           
+                   Route::post('/contratos', [AdminContratoController::class, 'store'])
+                        ->name('contratos.store'); // admin.contratos.store
+           
+                   Route::get('/contratos/{contrato}/editar', [AdminContratoController::class, 'edit'])
+                        ->name('contratos.edit'); // admin.contratos.edit
+           
+                   Route::put('/contratos/{contrato}', [AdminContratoController::class, 'update'])
+                        ->name('contratos.update'); // admin.contratos.update
+
+
                
+          Route::get('/responsables', [AdminResponsableController::class, 'index'])
+          ->name('responsables.index'); // admin.responsables.index
+
+     Route::get('/responsables/{responsable}/editar', [AdminResponsableController::class, 'edit'])
+          ->name('responsables.edit'); // admin.responsables.edit
+
+     Route::put('/responsables/{responsable}', [AdminResponsableController::class, 'update'])
+          ->name('responsables.update'); // admin.responsables.update
               // Gestión de Usuarios (Solo Admin)
               Route::get('/usuarios', [AdminUserController::class, 'index'])->name('usuarios.index');
               Route::get('/usuarios/crear', [AdminUserController::class, 'create'])->name('usuarios.create');
