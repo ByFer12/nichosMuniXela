@@ -43,7 +43,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th colspan="5" class="text-end">Total Recaudado:</th>
+                            <th colspan="5" class="text-end">Total Recaudado durante el inicio de seion(no se qe seion solo agrego para ver si los commits se logran ver reflejados):</th>
                             <th class="text-end">Q {{ number_format($totalRecaudado, 2) }}</th>
                             <th></th>
                         </tr>

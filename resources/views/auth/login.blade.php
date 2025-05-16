@@ -40,7 +40,7 @@
                     </div>
                 
                     <div class="text-center mt-4">
-                        ¿No tienes cuenta? <a href="{{ route('register') }}">Regístrate aquí</a>
+                        ¿No tienes cuenta? <a href="{{ route('register') }}">Regístrate aquí de inmediato</a>
                     </div>
                 </form>
                 

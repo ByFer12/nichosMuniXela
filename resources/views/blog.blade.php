@@ -23,7 +23,7 @@
             <div class="card h-100">
                 <img src="https://via.placeholder.com/300x200" class="card-img-top" alt="Imagen de Blog 2">
                 <div class="card-body">
-                    <h5 class="card-title">Arquitectura y Monumentos</h5>
+                    <h5 class="card-title">Arquitectura y Monumentos de los nichos municipales jejej</h5>
                     <p class="card-text">Descubre la belleza arquitectónica y los importantes monumentos que alberga el cementerio.</p>
                     <a href="#" class="btn btn-primary">Leer más</a>
                 </div>
